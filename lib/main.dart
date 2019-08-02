@@ -35,6 +35,7 @@ class Main extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
+  //teste commit
   @override
   Widget build(BuildContext context) {
     final HomeBloc bloc = Provider.of<HomeBloc>(context);
