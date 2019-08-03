@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:shopping_bloc/models/product-list-item.model.dart';
+import 'package:shopping_bloc/ui/android/pages/product.page.dart';
+import 'package:shopping_bloc/ui/shared/widgets/shared/add-to-cart.widget.dart';
 
 class ProductCard extends StatelessWidget {
   final ProductListItemModel item;
@@ -23,17 +25,29 @@ class ProductCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Container(
-            width: 240,
-            height: 240,
-            decoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.05),
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(5),
-                topRight: Radius.circular(5),
-              ),
-              image: DecorationImage(
-                image: NetworkImage(item.image),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProductPage(
+                    tag: item.tag,
+                  ),
+                ),
+              );
+            },
+            child: Container(
+              width: 240,
+              height: 240,
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.05),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(5),
+                  topRight: Radius.circular(5),
+                ),
+                image: DecorationImage(
+                  image: NetworkImage(item.image),
+                ),
               ),
             ),
           ),
@@ -91,6 +105,9 @@ class ProductCard extends StatelessWidget {
                       color: Theme.of(context).primaryColor,
                     ),
                   ),
+                ),
+                AddToCart(
+                  item: item,
                 ),
               ],
             ),
